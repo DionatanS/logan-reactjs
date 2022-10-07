@@ -1,10 +1,18 @@
-import React, { useState } from "react"
+import React, { useState,useRef } from "react"
 import './index.scss'
 
+//  let arrow = document.querySelectorAll(".arrow");
+//     for (var i = 0; i < arrow.length; i++) {
+//         arrow[i].addEventListener("click", (e) => {
+//             let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+//             arrowParent.classNameList.toggle("showMenu");
+//         });
+//     }
 
 export default function Menu() {
     const [subNav, setSubNav] = useState(false)
     const [openMenu, setOpenMenu] = useState('sidebar close')
+    const produtos = useRef();
     function openClose(){
         if(openMenu === 'sidebar close'){
             setOpenMenu('sidebar')
@@ -13,18 +21,20 @@ export default function Menu() {
         }
     }
     function showSubNav(e){
-        console.log(e.target.parentElement)
-        
+        const subMenu = e.currentTarget.parentNode.childNodes[1]   
+        const iconArrow = e.currentTarget.parentNode.childNodes[0].childNodes[1]
+        console.log(e.currentTarget.parentNode.childNodes[0].childNodes[1])
+        if(subMenu.style.display == 'block'){
+            subMenu.style.display = 'none'
+            iconArrow.style.transform = 'rotate(0deg)'
+        }else{
+            subMenu.style.display = 'block'
+            iconArrow.style.transform = 'rotate(-180deg)'
+        }
     }
 
 
-    // let arrow = document.querySelectorAll(".arrow");
-    // for (var i = 0; i < arrow.length; i++) {
-    //     arrow[i].addEventListener("click", (e) => {
-    //         let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-    //         arrowParent.classNameList.toggle("showMenu");
-    //     });
-    // }
+   
     
     return (
         <div>
@@ -35,7 +45,7 @@ export default function Menu() {
                 </div>
                 <ul className="nav-links">
                 <li>
-                        <div className="iocn-link" onClick={(e) => showSubNav(e)}>
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a >
                                 <i className="bx bx-collection"></i>
                                 <span className="link_name">Produtos</span>
@@ -49,7 +59,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-collection'></i>
                                 <span className="link_name">Campanhas</span>
@@ -63,7 +73,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Ofertas</span>
@@ -78,7 +88,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt'></i>
                                 <span className="link_name">Assinaturas</span>
@@ -93,7 +103,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Ofertas</span>
@@ -113,7 +123,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Logística</span>
@@ -128,14 +138,14 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Ações</span>
                             </a>
                             <i className='bx bxs-chevron-down arrow' ></i>
                         </div>
-                        <ul className="sub-menu">
+                        <ul className="sub-menu" >
                             <li><a className="link_name">Ações em lote</a></li>
                             <li><a>Histórico</a></li>
                             <li><a>Abertura de Tickets</a></li>
@@ -152,7 +162,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Relatórios</span>
@@ -175,7 +185,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Relatórios Fin</span>
@@ -197,7 +207,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Relatórios Ger.</span>
@@ -211,7 +221,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">E-commerce</span>
@@ -231,7 +241,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Autenticação e seg.</span>
@@ -245,7 +255,7 @@ export default function Menu() {
                         </ul>
                     </li>
                     <li>
-                        <div className="iocn-link">
+                        <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
                             <a>
                                 <i className='bx bx-book-alt' ></i>
                                 <span className="link_name">Vouchers</span>
