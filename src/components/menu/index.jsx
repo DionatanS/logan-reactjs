@@ -1,4 +1,6 @@
+import matchers from "@testing-library/jest-dom/matchers";
 import React, { useState,useRef } from "react"
+import Media from 'react-media';
 import './index.scss'
 
 //  let arrow = document.querySelectorAll(".arrow");
@@ -12,18 +14,19 @@ import './index.scss'
 export default function Menu() {
     const [subNav, setSubNav] = useState(false)
     const [openMenu, setOpenMenu] = useState('sidebar close')
-    const produtos = useRef();
     function openClose(){
         if(openMenu === 'sidebar close'){
             setOpenMenu('sidebar')
+            setSubNav(true)
         }else{
             setOpenMenu('sidebar close')
+            setSubNav(false)
         }
     }
     function showSubNav(e){
         const subMenu = e.currentTarget.parentNode.childNodes[1]   
         const iconArrow = e.currentTarget.parentNode.childNodes[0].childNodes[1]
-        console.log(e.currentTarget.parentNode.childNodes[0].childNodes[1])
+        // console.log(e.currentTarget.parentNode.childNodes[0].childNodes[1])
         if(subMenu.style.display == 'block'){
             subMenu.style.display = 'none'
             iconArrow.style.transform = 'rotate(0deg)'
@@ -37,25 +40,25 @@ export default function Menu() {
    
     
     return (
-        <div>
+        <div className="container-pai">
             <div className={openMenu}>
                 <div className="logo-details">
                     <i className="bx bxl-c-plus-plus"></i>
                     <span className="logo_name">Logan</span>
                 </div>
                 <ul className="nav-links">
-                <li>
+                    <li>
                         <div className="iocn-link" onClick={(e)=> showSubNav(e)}>
-                            <a >
-                                <i className="bx bx-collection"></i>
+                            <a>
+                                <i className='bx bx-collection'></i>
                                 <span className="link_name">Produtos</span>
                             </a>
-                            <i className="bx bxs-chevron-down arrow"></i>
+                            <i className="bx bxs-chevron-down arrow" ></i>
                         </div>
-                        <ul className={'sub-menu'}>
+                        <ul className="sub-menu">
                             <li><a className="link_name">Produtos</a></li>
                             <li><a>Listar</a></li>
-                            <li><a>Novo Produto</a></li>
+                            <li><a>Nova Produtos</a></li>
                         </ul>
                     </li>
                     <li>
@@ -286,9 +289,35 @@ export default function Menu() {
                 </ul>
             </div>
             <section className="home-section">
-                <div className="home-content">
+                <div className="header-section">
                     <i className='bx bx-menu' onClick={openClose}></i>
-                    {/* <span className="text">Drop Down Sidebar</span> */}
+                    <div className="perfil-logout">
+                        <Media queries = { {  small : " (max-width: 560px) " } }>
+                            {matches =>
+                                matches.small && subNav ?(
+                                    <p></p>
+                                ): (
+                                    <p>Olá, Dionatan da Silva</p>
+                                )
+                            }                                                     
+                        </Media>
+                        <Media queries = { {  small : " (max-width: 345px) " } }>
+                            {matches =>
+                                matches.small && subNav ?(
+                                    <p></p>
+                                ): (
+                                    <i className='bx bx-log-out' ></i>
+                                )
+                            }                                                     
+                        </Media>
+                        
+                        
+                    </div>
+                </div>
+                <div>
+                    <div className="testando-home">
+                        teste
+                    </div>
                 </div>
             </section>
         </div>
